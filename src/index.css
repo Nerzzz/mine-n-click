@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Monocraft";
+    src: url("fonts/Monocraft.ttf");
+}
+
+@theme{
+    --color-foreground: #313331;
+    --color-border: #3b3d3b
+}
+
+@keyframes click {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+*{
+    font-family: "Monocraft";
+    color: #efefef;
+}
+
+#block-field{
+    box-shadow: #242424bb 0 0 25px;
+    background-image: url("images/foreground/moss_block.webp");
+    background-size: 20%;
+    image-rendering: pixelated;
+}
+
+#block:active{
+    animation: click ease-out forwards 200ms;
+}
+
+#block{
+    background-image: url("images/blocks/oak_log.webp");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 200px;
+    height: 200px;
+    image-rendering: pixelated;
+    transition: 200ms;
+    outline: none;
+    border: none;
+    filter: drop-shadow(#242424bb 0 0 25px);
+}
