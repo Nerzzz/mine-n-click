@@ -57,6 +57,10 @@
     img{ image-rendering: pixelated; }
 }
 
+.pixelate{
+    image-rendering: pixelated;
+}
+
 #block_field{
     box-shadow: #242424bb 0 0 25px;
     background-image: url("images/foreground/moss_block.webp");
