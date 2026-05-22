@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 
-import GameField from '../components/GameField'
+import GameField from './components/GameField'
+import Aside from './components/Aside'
+import Toast from './components/Toast'
 
 function Game() {
 
@@ -12,9 +14,12 @@ function Game() {
     function handleIncrement(){
         setClicks(c => {
             const newClicks = c + 1
-            setTotalClicks(newClicks)
-            upLevel(newClicks)
+            return newClicks
+        })
 
+        setTotalClicks(c => {
+            const newClicks = c + 1
+            upLevel(newClicks)
             return newClicks
         })
     }
@@ -39,12 +44,11 @@ function Game() {
     },[])
 
     return (
-        <main className='w-full h-dvh flex'>
+        <>
             <GameField click={handleIncrement} level={level} />
-            <section id="upgrades" className='flex-1 border-l-border border-l'>
-                <p>Clicks: {clicks}</p>
-            </section>
-        </main>
+            <Aside clicks={clicks} totalClicks={totalClicks}/>
+            <Toast totalClicks={totalClicks} level={level}/>
+        </>
     )
 }
 

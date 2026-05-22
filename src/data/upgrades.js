@@ -6,7 +6,7 @@ export const UPGRADES = [
         req: null,
         cost: 50,
         aply: 2,
-        icon: "wooden_pickaxe"
+        icon: "wooden_pickaxe.webp"
     },
     {
         id: "iron_pickaxe",
@@ -15,7 +15,7 @@ export const UPGRADES = [
         req: "wooden_pickaxe",
         cost: 1000,
         aply: 3,
-        icon: "iron_pickaxe"
+        icon: "iron_pickaxe.webp"
     },
     {
         id: "diamond_pickaxe",
@@ -24,7 +24,7 @@ export const UPGRADES = [
         req: "iron_pickaxe",
         cost: 10000,
         aply: 5,
-        icon: "diamond_pickaxe"
+        icon: "diamond_pickaxe.webp"
     },
     {
         id: "netherite_pickaxe",
@@ -33,6 +33,6 @@ export const UPGRADES = [
         req: "diamond_pickaxe",
         cost: 500000,
         aply: 10,
-        icon: "netherite_pickaxe"
+        icon: "netherite_pickaxe.webp"
     }
 ]
