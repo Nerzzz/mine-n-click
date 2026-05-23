@@ -76,8 +76,6 @@
     background-image: url("images/blocks/oak_log.webp");
     background-repeat: no-repeat;
     background-size: contain;
-    width: 200px;
-    height: 200px;
     image-rendering: pixelated;
     transition: 200ms;
     outline: none;

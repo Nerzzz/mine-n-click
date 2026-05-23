@@ -1,4 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
+
+import { useGameStore } from './store/gameStore'
 
 import GameField from './components/GameField'
 import Aside from './components/Aside'
@@ -6,37 +8,45 @@ import Toast from './components/Toast'
 
 function Game() {
 
-    const [clicks, setClicks] = useState(0)
-    const [totalClicks, setTotalClicks] = useState(0)
+    const [blocks, setBlocks] = useState(0)
+    const [totalBlocks, setTotalBlocks] = useState(0)
     
     const [level, setLevel] = useState(0)
 
     function handleIncrement(){
-        setClicks(c => {
+        setBlocks(c => {
             const newClicks = c + 1
             return newClicks
         })
 
-        setTotalClicks(c => {
+        setTotalBlocks(c => {
             const newClicks = c + 1
             upLevel(newClicks)
             return newClicks
         })
     }
 
+    const buyToolUpgrade  = useGameStore((s) => s.buyToolUpgrade)
+
+    const handleBuyTool = useCallback((id) => {
+        const ok = buyToolUpgrade(id)
+        if (!ok) alert("Insuficient blocks!")
+        else showToast("Upgrade acquired")
+    }, [buyToolUpgrade])
+
     function upLevel(){
-        if(totalClicks < 50) setLevel(0); // surface 
-        if(totalClicks+1 >= 50) setLevel(1); // stone
-        if(totalClicks+1 >= 200) setLevel(2); // coal
-        if(totalClicks+1 >= 500) setLevel(3); // iron
-        if(totalClicks+1 >= 2000) setLevel(4); // spawner
-        if(totalClicks+1 >= 5000) setLevel(5); // fake diamond
-        if(totalClicks+1 >= 10000) setLevel(6); // emerald
-        if(totalClicks+1 >= 50000) setLevel(7); // -1
-        if(totalClicks+1 >= 100000) setLevel(8); // warden
-        if(totalClicks+1 >= 200000) setLevel(9); // diamond
-        if(totalClicks+1 >= 500000) setLevel(10); // obsidian
-        if(totalClicks+1 >= 1000000) setLevel(11); // nether
+        if(totalBlocks < 50) setLevel(0); // surface 
+        if(totalBlocks+1 >= 50) setLevel(1); // stone
+        if(totalBlocks+1 >= 200) setLevel(2); // coal
+        if(totalBlocks+1 >= 500) setLevel(3); // iron
+        if(totalBlocks+1 >= 2_000) setLevel(4); // spawner
+        if(totalBlocks+1 >= 5_000) setLevel(5); // fake diamond
+        if(totalBlocks+1 >= 10_000) setLevel(6); // emerald
+        if(totalBlocks+1 >= 50_000) setLevel(7); // -1
+        if(totalBlocks+1 >= 100_000) setLevel(8); // warden
+        if(totalBlocks+1 >= 200_000) setLevel(9); // diamond
+        if(totalBlocks+1 >= 500_000) setLevel(10); // obsidian
+        if(totalBlocks+1 >= 1_000_000) setLevel(11); // nether
     }
 
     useEffect(()=>{
@@ -46,8 +56,8 @@ function Game() {
     return (
         <>
             <GameField click={handleIncrement} level={level} />
-            <Aside clicks={clicks} totalClicks={totalClicks}/>
-            <Toast totalClicks={totalClicks} level={level}/>
+            <Aside blocks={blocks} totalBlocks={totalBlocks}/>
+            <Toast totalBlocks={totalBlocks} level={level}/>
         </>
     )
 }

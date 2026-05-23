@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { ACHIEVEMENTS } from '../data/achievements'
 
-function Toast({totalClicks, level}) {
+function Toast({totalBlocks, level}) {
 
     const [visible, setVisible] = useState(false)
     const timerRef = useRef(null)
@@ -19,7 +19,7 @@ function Toast({totalClicks, level}) {
     useEffect(() => {
         const achievement = ACHIEVEMENTS[level]
 
-        if (totalClicks >= achievement.min){
+        if (totalBlocks >= achievement.min){
             new Audio('/audio/achievement.mp3').play();
 
             setVisible(true)
